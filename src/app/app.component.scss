@@ -1,0 +1,22 @@
+.my-message {
+   
+    border: 4px solid green;
+    border-radius: 20px;
+    text-align: left;
+    padding: 10px;
+
+  }
+
+  .other-message {
+    
+    border: 4px solid grey;
+    float: right;
+    width: 100%;
+    border-radius: 20px;
+    text-align: right;
+    padding: 10px;
+    &:after {
+      border-bottom-color:grey;
+      left: 93%;
+    }
+  }

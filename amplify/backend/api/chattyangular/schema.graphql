@@ -1,0 +1,6 @@
+type Chatty @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  user: String!
+  message: String
+  createdAt: AWSDateTime
+} 

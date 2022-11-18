@@ -1,0 +1,75 @@
+<amplify-authenticator>
+  <ng-template
+    amplifySlot="authenticated"
+    let-user="user"
+    let-signOut="signOut"
+  >
+
+  <div class="container">
+
+    <div class="app-header">
+
+
+    </div>
+    <div class="app-body">
+      <amplify-authenticator>
+        <div class="welcome">
+          <h6>Welcome, {{user.username}}!</h6>
+          <div class="list-group">
+
+            <!-- <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group item heading</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+              <small class="text-muted">Donec id elit non mi porta.</small>
+            </a> -->
+
+          </div>
+        </div>
+      </amplify-authenticator>
+      <div *ngIf="user">
+
+        <div>
+          <div class="form-body">
+            <form autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
+              <div class="input"><input class="form-control" type="text" formControlName="message" autocomplete="off" placeholder="Enter your message..."></div>
+              <div style="text-align:right;margin:10px"> <button type="submit" class="btn btn-primary text-center" >Send</button></div>
+              <!-- <button type="button" (click)="onDeleteAll()">Delete All</button> -->
+            </form>
+          </div>
+
+        </div>
+        <span *ngIf="loading">Loading...</span>
+        <div class="chatty-container">
+          <div class="chatty">
+
+
+            <div *ngFor="let message of messages" class="list-group">
+
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div [ngClass]="(this.user.username === message.user)? 'my-message' : 'other-message'">
+                <div class="message-container">
+                  <div class="message-user">{{ message.user }}
+                    <!-- <span class="message-time" title="{{ moment(message.createdAt).format('YYYY-MM-DD HH:mm:ss') }}">{{ moment(message.createdAt).format('HH:mm:ss')}}</span> -->
+                  </div>
+                  <div class="message-text">{{ message.message }}</div>
+                </div>
+              </div>
+              </a>
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="signOut()">Sign Out</button>
+  </div>
+  </ng-template>
+</amplify-authenticator>
